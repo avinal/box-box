@@ -1,0 +1,61 @@
+{{- /*
+  Renders a menu for the given menu ID.
+
+  @context {page} page The current page.
+  @context {string} menuID The menu ID.
+
+  @example: {{ partial "menu.html" (dict "menuID" "main" "page" .)
+}}
+*/}}
+{{- $page := .page }}
+{{- $menuID := .menuID }}
+
+{{- with index site.Menus $menuID }}
+  <nav class="flex columns-auto flex-col justify-between">
+    <ul class="grid gap-4 sm:auto-cols-auto sm:grid-flow-col">
+      {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+    </ul>
+  </nav>
+{{- end }}
+
+{{- define "partials/inline/menu/walk.html" }}
+  {{- $page := .page }}
+  {{- range .menuEntries }}
+    {{- $attrs := dict "href" .URL }}
+    {{- $classes := "min-width flex items-center justify-center border border-black text-center shadow-md shadow-gray-600" }}
+
+    {{- if $page.IsMenuCurrent .Menu . }}
+      {{- $classes = (printf "%s %s" $classes "bg-black text-white active") }}
+      {{- $attrs = merge $attrs (dict "aria-current" "page") }}
+    {{- else }}
+      {{- $classes = (printf "%s %s" $classes "bg-white text-black ancestor hover:text-white hover:bg-black") }}
+      {{- $attrs = merge $attrs (dict "aria-current" "true") }}
+    {{- end }}
+
+    {{- $attrs = merge $attrs (dict "class" $classes) }}
+    {{- $name := .Name }}
+    {{- with .Identifier }}
+      {{- with T . }}
+        {{- $name = . }}
+      {{- end }}
+    {{- end }}
+
+
+    <li class="flex-1">
+      <a
+        {{- range $k, $v :=$attrs }}
+          {{- with $v }}
+            {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+          {{- end }}
+        {{- end -}}
+      >
+        {{ $name }}
+      </a>
+      {{- with .Children }}
+        <ul>
+          {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+        </ul>
+      {{- end }}
+    </li>
+  {{- end }}
+{{- end }}

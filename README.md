@@ -1,2 +1,7 @@
-# the-magazine-syntax
-A hugo theme combining magazine and terminal
+# Box Box | A Hugo theme by Avinal
+
+## Features
+
+## Installation
+
+## Configuration

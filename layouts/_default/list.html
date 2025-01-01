@@ -1,0 +1,105 @@
+{{ define "main" }}
+  <section>
+    <div class="max-w-6xl mx-auto space-y-4 sm:space-y-5">
+      {{ range first 1 .Pages }}
+        <div
+          class="block max-x-sm gap-4 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 ring-1 ring-black"
+        >
+          <a class="lg:col-span-7" href="{{ .RelPermalink }}">
+            <img
+              class="object-cover w-full h-64 sm:h-96 lg:col-span-7 grayscale group-hover:grayscale-0"
+              src="{{ .Params.Image | absURL }}"
+              alt="{{ .LinkTitle }}"
+            />
+          </a>
+          <div class="p-4 space-y-2 lg:col-span-5">
+            <a href="{{ .RelPermalink }}">
+              <h3 class="text-xl font-medium sm:text-3xl ">
+                {{ .LinkTitle }}
+              </h3>
+              <div class="inset-x-0 space-y-1 py-2">
+                <hr class="border-t-1 border-black" />
+                <hr class="border-t-1 border-black" />
+              </div>
+              {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+              {{ $dateHuman := .Date | time.Format ":date_long" }}
+              <time datetime="{{ $dateMachine }}" class="text-gray-400"
+                >{{ $dateHuman }}</time
+              >
+              {{ if gt .ReadingTime 1 }}
+                {{ .Scratch.Set "timeUnit" "mins" }}
+              {{ else }}
+                {{ .Scratch.Set "timeUnit" "min" }}
+              {{ end }}
+
+
+              <span class="text-gray-400">
+                | ~{{ .ReadingTime }} {{ .Scratch.Get "timeUnit" }}</span
+              >
+              <p class="break-all">{{ .Summary | truncate 200 }}</p>
+            </a>
+
+            <!-- <span class=""> -->
+            <a
+              class="flex justify-center border border-black text-center text-white bg-black hover:text-black hover:bg-white hover:font-bold capitalize"
+              href="/posts/category/{{ .Params.Category }}"
+            >
+              {{ .Params.Category }}</a
+            >
+            <!-- </span> -->
+          </div>
+        </div>
+      {{ end }}
+      <div
+        class="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        {{ range after 1 .Pages }}
+          <div
+            class="max-w-sm mx-auto group hover:no-underline focus:no-underline ring-1 ring-black "
+          >
+            <a href="{{ .RelPermalink }}">
+              <img
+                class="object-cover w-full h-44 grayscale group-hover:grayscale-0"
+                src="{{ .Params.Image | absURL }}"
+                alt="{{ .LinkTitle }}"
+              />
+            </a>
+            <div class="p-4 space-y-2">
+              <a href="{{ .RelPermalink }}">
+                <h3 class="text-2xl font-medium ">{{ .LinkTitle }}</h3>
+                <div class="inset-x-0 space-y-1 py-2">
+                  <hr class="border-t-1 border-black" />
+                  <hr class="border-t-1 border-black" />
+                </div>
+                {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+                {{ $dateHuman := .Date | time.Format ":date_long" }}
+                <time datetime="{{ $dateMachine }}" class="text-gray-400"
+                  >{{ $dateHuman }}</time
+                >
+                {{ if gt .ReadingTime 1 }}
+                  {{ .Scratch.Set "timeUnit" "mins" }}
+                {{ else }}
+                  {{ .Scratch.Set "timeUnit" "min" }}
+                {{ end }}
+
+
+                <span class="text-gray-400">
+                  | ~{{ .ReadingTime }} {{ .Scratch.Get "timeUnit" }}</span
+                >
+                <p class="break-all">{{ .Summary | truncate 147 }}</p>
+              </a>
+              <!-- <span class="flex colums-auto flex-col justify-between"> -->
+              <a
+                class="flex items-center justify-center border border-black text-center hover:text-black hover:bg-white text-white bg-black capitalize hover:font-bold"
+                href="/posts/category/{{ .Params.Category }}"
+              >
+                {{ .Params.Category }}</a
+              >
+              <!-- </span> -->
+            </div>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

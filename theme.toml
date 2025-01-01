@@ -1,0 +1,20 @@
+name = 'Box Box'
+license = 'MIT'
+licenselink = 'https://github.com/avinal/box-box/LICENSE'
+description = 'Box Box | A Hugo theme by Avinal'
+
+# The home page of the theme, where the source can be found
+homepage = 'https://github.com/avinal/box-box'
+
+# If you have a running demo of the theme
+demosite = 'https://avinal.space'
+
+# Taxonomy terms
+tags = ['blog',  'responsive', 'website','portfolio','magazine', 'light', 'minimal', 'clean', 'box', 'simple']
+features = ['responsive', 'single-column', 'blog', 'tailwind']
+
+# If the theme has a single author
+[author]
+  name = 'Avinal Kumar'
+  homepage = 'https://avinal.space'
+
