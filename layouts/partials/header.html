@@ -1,4 +1,9 @@
+{{- $color := (index (shuffle (slice "cyan" "teal" "pink" "rose" "fuchsia" "purple" "violet" "indigo" "emerald" "yellow" "amber" "red")) 0) }}
 <div class="py-4">
-  <h1 class="text-xl font-bold font-mono bg-gradient-to-r to-black from-white">{{ site.Title }}</h1>
+  <h1
+    class="text-xl font-bold font-mono bg-gradient-to-r to-black hover:to-{{ $color }}-400 from-white"
+  >
+    {{ site.Title }}
+  </h1>
 </div>
 {{ partial "menu.html" (dict "menuID" "main" "page" .) }}

@@ -2,6 +2,9 @@
   <section>
     <div class="max-w-6xl mx-auto space-y-4 sm:space-y-5">
       {{ range first 1 .Pages }}
+
+        {{- $color := (index (shuffle (slice "cyan" "teal" "pink" "rose" "fuchsia" "purple" "violet" "indigo" "emerald" "yellow" "amber" "red")) 0) }}
+        {{- $classes := (printf "flex items-center justify-center border border-black text-center hover:text-black hover:bg-%s-400 text-white bg-black capitalize hover:font-bold" $color ) }}
         <div
           class="block max-x-sm gap-4 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 ring-1 ring-black"
         >
@@ -41,7 +44,7 @@
 
             <!-- <span class=""> -->
             <a
-              class="flex justify-center border border-black text-center text-white bg-black hover:text-black hover:bg-white hover:font-bold capitalize"
+              class="{{ $classes }}"
               href="/posts/category/{{ .Params.Category }}"
             >
               {{ .Params.Category }}</a
@@ -54,6 +57,8 @@
         class="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
       >
         {{ range after 1 .Pages }}
+          {{- $color := (index (shuffle (slice "cyan" "teal" "pink" "rose" "fuchsia" "purple" "violet" "indigo" "emerald" "yellow" "amber" "red")) 0) }}
+          {{- $classes := (printf "flex items-center justify-center border border-black text-center hover:text-black hover:bg-%s-400 text-white bg-black capitalize hover:font-bold" $color ) }}
           <div
             class="max-w-sm mx-auto group hover:no-underline focus:no-underline ring-1 ring-black "
           >
@@ -90,7 +95,7 @@
               </a>
               <!-- <span class="flex colums-auto flex-col justify-between"> -->
               <a
-                class="flex items-center justify-center border border-black text-center hover:text-black hover:bg-white text-white bg-black capitalize hover:font-bold"
+                class="{{ $classes }}"
                 href="/posts/category/{{ .Params.Category }}"
               >
                 {{ .Params.Category }}</a

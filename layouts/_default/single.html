@@ -22,11 +22,17 @@
         class="hidden font-mono md:block md:col-span-1 mt-6 cursor-default [writing-mode:vertical-rl]"
       >
         <!-- <h2 class="font-light uppercase md:text-2xl">The Secondary header goes here</h2> -->
-        <div class=" font-medium">
+        <div class=" font-medium space-y-2">
           {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
           {{ $dateHuman := .Date | time.Format ":date_long" }}
-          <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
-          <span>| {{ .WordCount }} words</span>
+          <time
+            datetime="{{ $dateMachine }}"
+            class="border border-black py-2 px-1 hover:bg-cyan-400"
+            >{{ $dateHuman }}</time
+          >
+          <span class="border border-black py-2 px-1 hover:bg-teal-400"
+            >{{ .WordCount }} words</span
+          >
 
           {{ if gt .ReadingTime 1 }}
             {{ .Scratch.Set "timeUnit" "mins" }}
@@ -35,17 +41,25 @@
           {{ end }}
 
 
-          <span class="border border-black"
-            >| ~{{ .ReadingTime }} {{ .Scratch.Get "timeUnit" }}</span
-          >
+          <span class="border border-black py-2 px-1 hover:bg-pink-400"
+            >~{{ .ReadingTime }}
+            {{ .Scratch.Get "timeUnit" }}
+          </span>
         </div>
       </div>
 
-      <div class="prose prose-neutral lg:prose-lg md:col-span-11 md:mx-auto">
+      <div
+        class="prose prose-neutral lg:prose-lg md:col-span-11 col-span-12 md:mx-auto"
+      >
         <div
           class="invisible absolute inset-y-0 border-l-2 border-dashed border-black md:visible md:-ml-6"
         ></div>
 
+        <img
+          class="object-cover w-full h-60 sm:h-96 grayscale hover:grayscale-0"
+          src="{{ .Params.Image | absURL }}"
+          alt="{{ .Title }}"
+        />
         {{ .Content }}
 
       </div>
