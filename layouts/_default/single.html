@@ -1,12 +1,12 @@
 {{ define "main" }}
   <div
-    class="relative overflow-auto px-4 shadow-md shadow-gray-600 ring-1 ring-gray-800 mt-1 group"
+    class="relative overflow-auto px-4 ring-1 ring-gray-800 dark:ring-gray-50 mt-1 group"
   >
     <div class="grid font-mono md:grid-cols-12 md:space-x-10">
       <div class="hidden md:block md:col-span-1"></div>
       <div class="md:col-span-11">
         <h1
-          class="text-3xl font-medium uppercase md:py-4 md:text-4xl lg:text-5xl"
+          class="text-3xl font-medium uppercase md:py-4 md:text-4xl lg:text-5xl dark:text-gray-50"
         >
           {{ .Title }}
         </h1>
@@ -14,23 +14,24 @@
     </div>
 
     <div class="inset-x-2 -mx-4 space-y-1">
-      <hr class="border-t-2 border-black" />
-      <hr class="border-t-2 border-black" />
+      <hr class="border-t-1 border-black dark:border-white" />
+      <hr class="border-t-1 border-black dark:border-white" />
     </div>
     <div class="md:grid md:grid-cols-12 grid-col-11 md:space-x-10 mb-10">
       <div
         class="hidden font-mono md:block md:col-span-1 mt-6 cursor-default [writing-mode:vertical-rl]"
       >
         <!-- <h2 class="font-light uppercase md:text-2xl">The Secondary header goes here</h2> -->
-        <div class=" font-medium space-y-2">
+        <div class=" font-medium space-y-2 dark:text-white">
           {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
           {{ $dateHuman := .Date | time.Format ":date_long" }}
           <time
             datetime="{{ $dateMachine }}"
-            class="border border-black py-2 px-1 group-hover:bg-cyan-400"
+            class="border border-black py-2 px-1 group-hover:bg-cyan-400 dark:border-white dark:group-hover:text-black dark:group-hover:border-black"
             >{{ $dateHuman }}
           </time>
-          <span class="border border-black py-2 px-1 group-hover:bg-teal-400"
+          <span
+            class="border border-black py-2 px-1 group-hover:bg-teal-400 dark:border-white dark:group-hover:text-black dark:group-hover:border-black"
             >{{ .WordCount }} words
           </span>
 
@@ -41,7 +42,8 @@
           {{ end }}
 
 
-          <span class="border border-black py-2 px-1 group-hover:bg-pink-400"
+          <span
+            class="border border-black py-2 px-1 group-hover:bg-pink-400 dark:border-white dark:group-hover:text-black dark:group-hover:border-black"
             >~{{ .ReadingTime }}
             {{ .Scratch.Get "timeUnit" }}
           </span>
@@ -49,10 +51,10 @@
       </div>
 
       <div
-        class="prose prose-neutral lg:prose-lg md:col-span-11 col-span-12 md:mx-auto group-hover:prose-a:bg-violet-300 group-hover:prose-img:grayscale-0 prose-img:grayscale"
+        class="prose prose-neutral dark:prose-invert lg:prose-lg md:col-span-11 col-span-12 md:mx-auto group-hover:prose-a:bg-violet-300 group-hover:prose-img:grayscale-0 prose-img:grayscale dark:group-hover:prose-a:text-black first-letter selection:bg-fuchsia-300 dark:selection:text-black"
       >
         <div
-          class="invisible absolute inset-y-0 border-l-2 border-dashed border-black md:visible md:-ml-6"
+          class="invisible absolute inset-y-0 border-l-2 border-dashed border-black dark:border-white md:visible md:-ml-6"
         ></div>
 
         <img
@@ -65,7 +67,7 @@
       </div>
     </div>
     <div class="inset-x-0 mb-10 -m-4">
-      <hr class="border-b-1 border-black" />
+      <hr class="border-b-1 border-black dark:border-white" />
     </div>
   </div>
   <!-- {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }} -->

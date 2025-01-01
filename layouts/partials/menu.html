@@ -23,13 +23,13 @@
   {{- range .menuEntries }}
     {{- $attrs := dict "href" .URL }}
     {{- $color := (index (shuffle (slice "cyan" "teal" "pink" "rose" "fuchsia" "purple" "violet" "indigo" "emerald" "yellow" "amber" "red")) 0) }}
-    {{- $classes := "min-width flex items-center justify-center border border-black text-center shadow-md shadow-gray-600" }}
+    {{- $classes := "min-width flex items-center justify-center border border-black text-center dark:border-white" }}
 
     {{- if $page.IsMenuCurrent .Menu . }}
-      {{- $classes = (printf "%s %s" $classes "bg-black text-white active") }}
+      {{- $classes = (printf "%s %s" $classes "bg-black text-white active dark:text-black dark:bg-white") }}
       {{- $attrs = merge $attrs (dict "aria-current" "page") }}
     {{- else }}
-      {{- $classes = (printf "%s %s hover:bg-%s-400" $classes "bg-white text-black ancestor" $color) }}
+      {{- $classes = (printf "%s %s hover:bg-%s-400" $classes "bg-white text-black dark:text-white dark:hover:text-black dark:hover:border-black dark:bg-neutral-900 ancestor" $color) }}
       {{- $attrs = merge $attrs (dict "aria-current" "true") }}
     {{- end }}
 
