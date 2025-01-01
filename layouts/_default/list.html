@@ -4,7 +4,7 @@
       {{ range first 1 .Pages }}
 
         {{- $color := (index (shuffle (slice "cyan" "teal" "pink" "rose" "fuchsia" "purple" "violet" "indigo" "emerald" "yellow" "amber" "red")) 0) }}
-        {{- $classes := (printf "flex items-center justify-center border border-black text-center hover:text-black hover:bg-%s-400 text-white bg-black capitalize hover:font-bold" $color ) }}
+        {{- $classes := (printf "flex items-center justify-center border border-black text-center group-hover:text-black group-hover:bg-%s-400 text-white bg-black capitalize group-hover:font-bold" $color ) }}
         <div
           class="block max-x-sm gap-4 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 ring-1 ring-black"
         >
@@ -17,16 +17,18 @@
           </a>
           <div class="p-4 space-y-2 lg:col-span-5">
             <a href="{{ .RelPermalink }}">
-              <h3 class="text-xl font-medium sm:text-3xl ">
+              <h3 class="text-xl font-medium sm:text-3xl space-y-2">
                 {{ .LinkTitle }}
               </h3>
-              <div class="inset-x-0 space-y-1 py-2">
-                <hr class="border-t-1 border-black" />
-                <hr class="border-t-1 border-black" />
+              <div class="inset-x-0 py-2">
+                <hr class="border-t-2 border-black border-dashed" />
+                <!-- <hr class="border-t-1 border-black" /> -->
               </div>
               {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
               {{ $dateHuman := .Date | time.Format ":date_long" }}
-              <time datetime="{{ $dateMachine }}" class="text-gray-400"
+              <time
+                datetime="{{ $dateMachine }}"
+                class="border border-black py-1 px-2 group-hover:bg-cyan-400 font-light"
                 >{{ $dateHuman }}</time
               >
               {{ if gt .ReadingTime 1 }}
@@ -36,10 +38,12 @@
               {{ end }}
 
 
-              <span class="text-gray-400">
-                | ~{{ .ReadingTime }} {{ .Scratch.Get "timeUnit" }}</span
-              >
-              <p class="break-all">{{ .Summary | truncate 200 }}</p>
+              <span
+                class="border border-black py-1 px-2 group-hover:bg-pink-400 font-light"
+                >~{{ .ReadingTime }}
+                {{ .Scratch.Get "timeUnit" }}
+              </span>
+              <p class="break-all mt-2">{{ .Summary | truncate 200 }}</p>
             </a>
 
             <!-- <span class=""> -->
@@ -58,7 +62,7 @@
       >
         {{ range after 1 .Pages }}
           {{- $color := (index (shuffle (slice "cyan" "teal" "pink" "rose" "fuchsia" "purple" "violet" "indigo" "emerald" "yellow" "amber" "red")) 0) }}
-          {{- $classes := (printf "flex items-center justify-center border border-black text-center hover:text-black hover:bg-%s-400 text-white bg-black capitalize hover:font-bold" $color ) }}
+          {{- $classes := (printf "flex items-center justify-center border border-black text-center group-hover:text-black group-hover:bg-%s-400 text-white bg-black capitalize group-hover:font-bold" $color ) }}
           <div
             class="max-w-sm mx-auto group hover:no-underline focus:no-underline ring-1 ring-black "
           >
@@ -72,13 +76,14 @@
             <div class="p-4 space-y-2">
               <a href="{{ .RelPermalink }}">
                 <h3 class="text-2xl font-medium ">{{ .LinkTitle }}</h3>
-                <div class="inset-x-0 space-y-1 py-2">
-                  <hr class="border-t-1 border-black" />
-                  <hr class="border-t-1 border-black" />
+                <div class="inset-x-0 py-2">
+                  <hr class="border-t-1 border-dashed border-black" />
                 </div>
                 {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
                 {{ $dateHuman := .Date | time.Format ":date_long" }}
-                <time datetime="{{ $dateMachine }}" class="text-gray-400"
+                <time
+                  datetime="{{ $dateMachine }}"
+                  class="border border-black py-1 px-2 group-hover:bg-cyan-400 font-light"
                   >{{ $dateHuman }}</time
                 >
                 {{ if gt .ReadingTime 1 }}
@@ -88,10 +93,11 @@
                 {{ end }}
 
 
-                <span class="text-gray-400">
-                  | ~{{ .ReadingTime }} {{ .Scratch.Get "timeUnit" }}</span
+                <span
+                  class="border border-black py-1 px-2 group-hover:bg-pink-400 font-light"
+                  >~{{ .ReadingTime }} {{ .Scratch.Get "timeUnit" }}</span
                 >
-                <p class="break-all">{{ .Summary | truncate 147 }}</p>
+                <p class="break-all mt-2">{{ .Summary | truncate 147 }}</p>
               </a>
               <!-- <span class="flex colums-auto flex-col justify-between"> -->
               <a

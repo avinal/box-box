@@ -1,6 +1,6 @@
 {{ define "main" }}
   <div
-    class="relative overflow-auto px-4 shadow-md shadow-gray-600 ring-1 ring-gray-800 mt-1"
+    class="relative overflow-auto px-4 shadow-md shadow-gray-600 ring-1 ring-gray-800 mt-1 group"
   >
     <div class="grid font-mono md:grid-cols-12 md:space-x-10">
       <div class="hidden md:block md:col-span-1"></div>
@@ -27,10 +27,10 @@
           {{ $dateHuman := .Date | time.Format ":date_long" }}
           <time
             datetime="{{ $dateMachine }}"
-            class="border border-black py-2 px-1 hover:bg-cyan-400"
+            class="border border-black py-2 px-1 group-hover:bg-cyan-400"
             >{{ $dateHuman }}
           </time>
-          <span class="border border-black py-2 px-1 hover:bg-teal-400"
+          <span class="border border-black py-2 px-1 group-hover:bg-teal-400"
             >{{ .WordCount }} words
           </span>
 
@@ -41,7 +41,7 @@
           {{ end }}
 
 
-          <span class="border border-black py-2 px-1 hover:bg-pink-400"
+          <span class="border border-black py-2 px-1 group-hover:bg-pink-400"
             >~{{ .ReadingTime }}
             {{ .Scratch.Get "timeUnit" }}
           </span>
@@ -49,14 +49,14 @@
       </div>
 
       <div
-        class="prose prose-neutral lg:prose-lg md:col-span-11 col-span-12 md:mx-auto"
+        class="prose prose-neutral lg:prose-lg md:col-span-11 col-span-12 md:mx-auto group-hover:prose-a:bg-violet-300 group-hover:prose-img:grayscale-0 prose-img:grayscale"
       >
         <div
           class="invisible absolute inset-y-0 border-l-2 border-dashed border-black md:visible md:-ml-6"
         ></div>
 
         <img
-          class="object-cover w-full h-60 sm:h-96 grayscale hover:grayscale-0"
+          class="object-cover w-full h-60 sm:h-96"
           src="{{ .Params.Image | absURL }}"
           alt="{{ .Title }}"
         />
