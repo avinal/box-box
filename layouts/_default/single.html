@@ -17,7 +17,7 @@
       <hr class="border-t-2 border-black" />
       <hr class="border-t-2 border-black" />
     </div>
-    <div class="md:grid md:grid-cols-12 grid-col-11 md:space-x-10">
+    <div class="md:grid md:grid-cols-12 grid-col-11 md:space-x-10 mb-10">
       <div
         class="hidden font-mono md:block md:col-span-1 mt-6 cursor-default [writing-mode:vertical-rl]"
       >
@@ -28,11 +28,11 @@
           <time
             datetime="{{ $dateMachine }}"
             class="border border-black py-2 px-1 hover:bg-cyan-400"
-            >{{ $dateHuman }}</time
-          >
+            >{{ $dateHuman }}
+          </time>
           <span class="border border-black py-2 px-1 hover:bg-teal-400"
-            >{{ .WordCount }} words</span
-          >
+            >{{ .WordCount }} words
+          </span>
 
           {{ if gt .ReadingTime 1 }}
             {{ .Scratch.Set "timeUnit" "mins" }}
