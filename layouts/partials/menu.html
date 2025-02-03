@@ -29,7 +29,7 @@
       {{- $classes = (printf "%s %s" $classes "bg-black text-white active dark:text-black dark:bg-white") }}
       {{- $attrs = merge $attrs (dict "aria-current" "page") }}
     {{- else }}
-      {{- $classes = (printf "%s %s hover:bg-%s-400" $classes "bg-white text-black dark:text-white dark:hover:text-black dark:hover:border-black dark:bg-neutral-900 ancestor" $color) }}
+      {{- $classes = (printf "%s %s hover:bg-%s-400" $classes "bg-black text-white ancestor hover:text-black" $color) }}
       {{- $attrs = merge $attrs (dict "aria-current" "true") }}
     {{- end }}
 

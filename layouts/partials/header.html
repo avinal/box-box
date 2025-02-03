@@ -1,7 +1,7 @@
 {{- $color := (index (shuffle (slice "cyan" "teal" "pink" "rose" "fuchsia" "purple" "violet" "indigo" "emerald" "yellow" "amber" "red")) 0) }}
-<div class="py-4" onclick="toggleTheme()">
+<div class="py-4 ring-white">
   <h1
-    class="text-2xl font-bold font-mono bg-gradient-to-r to-black hover:to-{{ $color }}-400 from-white dark:text-white dark:to-white dark:from-neutral-900 cursor-default"
+    class="text-2xl font-bold font-mono text-white cursor-default"
   >
     {{ site.Title }}
   </h1>

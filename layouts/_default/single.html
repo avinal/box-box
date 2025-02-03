@@ -34,14 +34,11 @@
             class="border border-black py-2 px-1 group-hover:bg-teal-400 dark:border-white dark:group-hover:text-black dark:group-hover:border-black"
             >{{ .WordCount }} words
           </span>
-
           {{ if gt .ReadingTime 1 }}
             {{ .Scratch.Set "timeUnit" "mins" }}
           {{ else }}
             {{ .Scratch.Set "timeUnit" "min" }}
           {{ end }}
-
-
           <span
             class="border border-black py-2 px-1 group-hover:bg-pink-400 dark:border-white dark:group-hover:text-black dark:group-hover:border-black"
             >~{{ .ReadingTime }}

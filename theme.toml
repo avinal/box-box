@@ -22,6 +22,7 @@ tags = [
   'box',
   'simple'
 ]
+
 features = [
   'responsive',
   'single-column',
